@@ -1,13 +1,15 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+name: Hello Actions
+
+on:
+  push:
+    branches: ["main"]
+
 jobs:
-  check-bats-version:
+  say-hello:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm install -g bats
-      - run: bats -v
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Print message
+        run: echo "Hello GitHub Actions!"
